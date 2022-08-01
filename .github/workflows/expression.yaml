@@ -1,0 +1,14 @@
+name: expression
+
+on:
+  workflow_dispatch:
+
+jobs:
+  expression:
+    runs-on: ubuntu-latest
+    steps:
+      - id: check
+        run: echo "::set-output name=enabled::false"
+      - if: steps.check.outputs.enabled
+        name: executed
+        run: echo "executed"
