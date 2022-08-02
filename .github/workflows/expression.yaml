@@ -6,9 +6,41 @@ on:
 jobs:
   expression:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        enabled: [ true, false ]
+
     steps:
       - id: check
-        run: echo "::set-output name=enabled::false"
+        run: echo "::set-output name=enabled::${{ matrix.enabled }}"
+
       - if: steps.check.outputs.enabled
-        name: executed
-        run: echo "executed"
+        name: executed 1
+        run: echo "executed 1"
+      - if: !steps.check.outputs.enabled
+        name: executed 2
+        run: echo "executed 2"
+      - if: steps.check.outputs.enabled == true
+        name: executed 3
+        run: echo "executed 3"
+      - if: steps.check.outputs.enabled != true
+        name: executed 4
+        run: echo "executed 4"
+      - if: steps.check.outputs.enabled == false
+        name: executed 5
+        run: echo "executed 5"
+      - if: steps.check.outputs.enabled != true
+        name: executed 6
+        run: echo "executed 6"
+      - if: steps.check.outputs.enabled == 'true'
+        name: executed 7
+        run: echo "executed 7"
+      - if: steps.check.outputs.enabled != 'true'
+        name: executed 8
+        run: echo "executed 8"
+      - if: steps.check.outputs.enabled == 'false'
+        name: executed 9
+        run: echo "executed 9"
+      - if: steps.check.outputs.enabled != 'false'
+        name: executed 10
+        run: echo "executed 10"
