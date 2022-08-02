@@ -64,7 +64,3 @@ jobs:
       - if: steps.check.outputs.enabled != 'false'
         name: executed 12
         run: echo "executed 12"
-
-      - if: ''
-        name: executed 13
-        run: echo "executed 13"
