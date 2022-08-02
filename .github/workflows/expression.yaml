@@ -38,7 +38,7 @@ jobs:
       - if: steps.check.outputs.enabled == false
         name: executed 7
         run: echo "executed 7"
-      - if: steps.check.outputs.enabled != true
+      - if: steps.check.outputs.enabled != false
         name: executed 8
         run: echo "executed 8"
       - if: steps.check.outputs.enabled == 'true'
